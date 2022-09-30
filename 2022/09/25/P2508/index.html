@@ -25,7 +25,7 @@
 
   
 
-  <title>OI 模板 | JIANCGD001 的 blog</title>
+  <title>P2508 [HAOI2008]圆上的整点 题解 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(http://img9.vilipix.com/picture/pages/original/2022/07/06/13/100349994_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(http://img9.vilipix.com/picture/pages/original/2022/08/31/12/101048950_p0.jpg)"></div>
   
 
   <!-- navbar -->
@@ -211,11 +211,11 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">OI 模板</h1>
+          <h1 class="title-wrap">P2508 [HAOI2008]圆上的整点 题解</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-08-12T08:55:43.000Z" itemprop="datePublished">2022-08-12</time>
+            <time  class="article-date" datetime="2022-09-25T04:21:27.000Z" itemprop="datePublished">2022-09-25</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -223,6 +223,10 @@ mjx-container[display="true"] + br {
           <ul class="wrap-list dark">
   
     <li><a href="/tags/OI/">🏷️ OI</a></li>
+  
+    <li><a href="/tags/Solutions/">🏷️ Solutions</a></li>
+  
+    <li><a href="/tags/Math/">🏷️ Math</a></li>
   
 </ul>
         </div>
@@ -246,40 +250,23 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="最大公因数"><a href="#最大公因数" class="headerlink" title="最大公因数"></a>最大公因数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<h3 id="倍增快速幂"><a href="#倍增快速幂" class="headerlink" title="倍增快速幂"></a>倍增快速幂</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MOD=<span class="number">998244353</span></span><br><span class="line"><span class="type">int</span> <span class="built_in">quickpower</span>(<span class="type">int</span> a,<span class="type">int</span> b)</span><br><span class="line">{</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (b&gt;<span class="number">0</span>)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span> (b%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">      {</span><br><span class="line">        ans=ans*b%MOD;</span><br><span class="line">      }</span><br><span class="line">      a=a*a%k;</span><br><span class="line">      b=b&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+        
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="http://img9.vilipix.com/picture/pages/original/2021/07/15/08/48/78375868_p0.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2022/08/16/matrix/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">矩阵初步应用</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="http://img9.vilipix.com/picture/pages/original/2022/07/06/14/100170244_p0.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="http://img9.vilipix.com/picture/pages/original/2022/06/27/12/99503124_p0.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2022/08/10/mb/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">张好风的数学课讲义 2</h2>
+        <a href="/2022/08/17/fft/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">浅析三角函数在现代通信领域的应用——快速傅里叶变换</h2>
         </a>
       
       <div class="card-text--row">Older</div>
