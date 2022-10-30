@@ -25,7 +25,7 @@
 
   
 
-  <title>P1502 窗口的星星 题解 | JIANCGD001 的 blog</title>
+  <title>CSP-S 2022 游记 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://s1.imagehub.cc/images/2022/10/23/101779891_p0.webp)"></div>
+    <div class="post-image" style="background-image: url(https://s1.imagehub.cc/images/2022/10/30/102257565_p0.webp)"></div>
   
 
   <!-- navbar -->
@@ -211,11 +211,11 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">P1502 窗口的星星 题解</h1>
+          <h1 class="title-wrap">CSP-S 2022 游记</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-10-15T01:59:44.000Z" itemprop="datePublished">2022-10-15</time>
+            <time  class="article-date" datetime="2022-10-30T00:41:37.000Z" itemprop="datePublished">2022-10-30</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -224,11 +224,7 @@ mjx-container[display="true"] + br {
   
     <li><a href="/tags/OI/">🏷️ OI</a></li>
   
-    <li><a href="/tags/Solutions/">🏷️ Solutions</a></li>
-  
-    <li><a href="/tags/Segment-Tree/">🏷️ Segment Tree</a></li>
-  
-    <li><a href="/tags/Hash/">🏷️ Hash</a></li>
+    <li><a href="/tags/Diary/">🏷️ Diary</a></li>
   
 </ul>
         </div>
@@ -252,14 +248,15 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>类似于扫描线。<br>利用扫描线的思想用线段树求区间最大值。</p>
-<p>Code:  </p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 1000005</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls (k&lt;&lt;1)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs (k&lt;&lt;1|1)</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-type">int</span> T,n,w,h,cnt[MAXN];<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">segment</span><br>{<br>    <span class="hljs-type">int</span> l,r,h,val;<br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &lt; (<span class="hljs-type">const</span> segment &amp;_x) <span class="hljs-type">const</span><br>    {<br>        <span class="hljs-keyword">return</span> (h!=_x.h)?h&lt;_x.h:val&gt;_x.val;<br>    }<br>}seg[MAXN&lt;&lt;<span class="hljs-number">2</span>];<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span><br>{<br>    <span class="hljs-type">int</span> l,r,mx,tag;<br>}t[MAXN&lt;&lt;<span class="hljs-number">2</span>];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-built_in">memset</span>(seg,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(seg));<br>    <span class="hljs-built_in">memset</span>(t,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(t));<br>}<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">up</span><span class="hljs-params">(<span class="hljs-type">int</span> k)</span></span><br><span class="hljs-function"></span>{<br>    t[k].mx=<span class="hljs-built_in">max</span>(t[ls].mx,t[rs].mx);<br>}<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> k)</span></span><br><span class="hljs-function"></span>{<br>    t[k].l=l;<br>    t[k].r=r;<br>    t[k].mx=t[k].tag=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (l==r)<br>    {<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">build</span>(l,mid,ls);<br>    <span class="hljs-built_in">build</span>(mid+<span class="hljs-number">1</span>,r,rs);<br>}<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">down</span><span class="hljs-params">(<span class="hljs-type">int</span> k)</span></span><br><span class="hljs-function"></span>{<br>    t[ls].mx+=t[k].tag;<br>    t[rs].mx+=t[k].tag;<br>    t[ls].tag+=t[k].tag;<br>    t[rs].tag+=t[k].tag;<br>    t[k].tag=<span class="hljs-number">0</span>;<br>}<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-type">int</span> k,<span class="hljs-type">int</span> L,<span class="hljs-type">int</span> R,<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> l=t[k].l;<br>    <span class="hljs-type">int</span> r=t[k].r;<br>    <span class="hljs-keyword">if</span> (L&lt;=l&amp;&amp;r&lt;=R)<br>    {<br>        t[k].mx+=x;<br>        t[k].tag+=x;<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-built_in">down</span>(k);<br>    <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (L&lt;=mid)<br>    {<br>        <span class="hljs-built_in">change</span>(ls,L,R,x); <br>    }<br>    <span class="hljs-keyword">if</span> (R&gt;mid)<br>    {<br>        <span class="hljs-built_in">change</span>(rs,L,R,x);<br>    }<br>    <span class="hljs-built_in">up</span>(k); <br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;T);<br>    <span class="hljs-keyword">while</span> (T--)<br>    {<br>        <span class="hljs-built_in">init</span>();<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d %d"</span>,&amp;n,&amp;w,&amp;h);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        {<br>            <span class="hljs-type">int</span> x,y,light;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d %d"</span>,&amp;x,&amp;y,&amp;light);<br>            cnt[(i&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">-1</span>]=y;<br>            cnt[i&lt;&lt;<span class="hljs-number">1</span>]=y+h<span class="hljs-number">-1</span>;<br>            seg[(i&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">-1</span>]=(segment){y,y+h<span class="hljs-number">-1</span>,x,light};<br>            seg[i&lt;&lt;<span class="hljs-number">1</span>]=(segment){y,y+h<span class="hljs-number">-1</span>,x+w<span class="hljs-number">-1</span>,-light};<br>        }<br>        n&lt;&lt;=<span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">sort</span>(cnt+<span class="hljs-number">1</span>,cnt+n+<span class="hljs-number">1</span>);<br>        <span class="hljs-built_in">sort</span>(seg+<span class="hljs-number">1</span>,seg+n+<span class="hljs-number">1</span>);<br>        ll cnt1=<span class="hljs-built_in">unique</span>(cnt+<span class="hljs-number">1</span>,cnt+n+<span class="hljs-number">1</span>)-cnt<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span> (ll i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        {<br>            <span class="hljs-type">int</span> pos1=<span class="hljs-built_in">lower_bound</span>(cnt+<span class="hljs-number">1</span>,cnt+cnt1+<span class="hljs-number">1</span>,seg[i].l)-cnt;<br>            <span class="hljs-type">int</span> pos2=<span class="hljs-built_in">lower_bound</span>(cnt+<span class="hljs-number">1</span>,cnt+cnt1+<span class="hljs-number">1</span>,seg[i].r)-cnt;<br>            seg[i].l=pos1;<br>            seg[i].r=pos2;<br>        }<br>        <span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,cnt1,<span class="hljs-number">1</span>);<br>        <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        {<br>            <span class="hljs-comment">//cout&lt;&lt;i&lt;&lt;endl;</span><br>            <span class="hljs-built_in">change</span>(<span class="hljs-number">1</span>,seg[i].l,seg[i].r,seg[i].val);<br>            ans=<span class="hljs-built_in">max</span>(ans,t[<span class="hljs-number">1</span>].mx);<br>        }<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
+        <p>寄了啊。<br>夜晚的苏高，灯火通明，我从三元楼里走下来，长舒一口气——结束了。<br>四道题三道图论。第一题搜索、第三题动态图、第四题扩展 Dijkstra，一题都不会做。<br>第一题 BFS，我写成 DFS。<br>第三题直接全部输出 NO，骗分。<br>第四题看都没看。</p>
+<p>第二题博弈论套 ST 表（权值线段树），无语。</p>
+
       </section>
 
       
       
         <nav class="article-nav">
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
@@ -270,23 +267,6 @@ mjx-container[display="true"] + br {
       
         <a href="/2022/10/15/2022compete1/" itemprop="url">
           <h2 class="card-text--title text-ellipsis">10.15 全国挑战赛题讲解</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://s1.imagehub.cc/images/2022/10/23/94068924_p0.webp"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2022/10/15/P4588/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">P4588 [TJOI2018]数学计算 题解</h2>
         </a>
       
       <div class="card-text--row">Older</div>
