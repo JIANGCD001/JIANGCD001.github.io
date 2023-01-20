@@ -25,7 +25,7 @@
 
   
 
-  <title>P2441 角色属性树 题解 | JIANCGD001 的 blog</title>
+  <title>P1091 [NOIP2004 提高组]合唱队形 题解 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/04/vriohpu14HsPUaF.webp)"></div>
+    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/19/IOdWxz3jlCoXE8H.webp)"></div>
   
 
   <!-- navbar -->
@@ -211,11 +211,11 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">P2441 角色属性树 题解</h1>
+          <h1 class="title-wrap">P1091 [NOIP2004 提高组]合唱队形 题解</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-11-25T08:19:52.000Z" itemprop="datePublished">2022-11-25</time>
+            <time  class="article-date" datetime="2023-01-20T02:24:21.000Z" itemprop="datePublished">2023-01-20</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -226,15 +226,9 @@ mjx-container[display="true"] + br {
   
     <li><a href="/tags/Type-Solutions/">🏷️ Type-Solutions</a></li>
   
-    <li><a href="/tags/Algorithm-Math/">🏷️ Algorithm-Math</a></li>
+    <li><a href="/tags/Algorithm-Dynamic-Programming/">🏷️ Algorithm-Dynamic Programming</a></li>
   
-    <li><a href="/tags/Algorithm-Enumeration/">🏷️ Algorithm-Enumeration</a></li>
-  
-    <li><a href="/tags/Algorithm-Tree/">🏷️ Algorithm-Tree</a></li>
-  
-    <li><a href="/tags/Algorithm-Prime/">🏷️ Algorithm-Prime</a></li>
-  
-    <li><a href="/tags/Data-Structure-Stack/">🏷️ Data Structure-Stack</a></li>
+    <li><a href="/tags/Data-Structure-Monotonic-Queue/">🏷️ Data Structure-Monotonic Queue</a></li>
   
 </ul>
         </div>
@@ -258,41 +252,26 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>两位成员有相同的萌元素说白了就是两者的萌点属性的最大公约数不是 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container>。显而易见，不是嘛？<br>接着顺藤摸瓜，一步一步顺着上司往上爬，结束。  </p>
-<p>Code：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 200005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> up[MAXN];<br><span class="hljs-type">int</span> val[MAXN];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">return</span> b==<span class="hljs-number">0</span>?a:<span class="hljs-built_in">gcd</span>(b,a%b);<br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> rt,<span class="hljs-type">int</span> u)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">if</span> (rt==<span class="hljs-number">0</span>)<br>    {<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    }<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">gcd</span>(val[rt],val[u])&gt;<span class="hljs-number">1</span>)<br>    {<br>        <span class="hljs-keyword">return</span> rt;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(up[rt],u);<br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> n,k;<br>    up[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;n,&amp;k);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,val+i);<br>    }<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n<span class="hljs-number">-1</span>;i++)<br>    {<br>        <span class="hljs-type">int</span> u,v;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;u,&amp;v);<br>        up[v]=u;<br>    }<br>    <span class="hljs-keyword">while</span> (k--)<br>    {<br>        <span class="hljs-type">int</span> opt,u,a;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;opt);<br>        <span class="hljs-keyword">if</span> (opt==<span class="hljs-number">1</span>)<br>        {<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;u);<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">dfs</span>(up[u],u));<br>        }<br>        <span class="hljs-keyword">else</span><br>        {<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;u,&amp;a);<br>            val[u]=a;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
+        <p>从右往左，按照左高右低的顺序找出每一个位置右边有几个从高到低的数，记作 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex;" xmlns="http://www.w3.org/2000/svg" width="3.093ex" height="2.245ex" role="img" focusable="false" viewBox="0 -705 1367.1 992.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path></g><g data-mml-node="TeXAtom" transform="translate(523,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></g></svg></mjx-container>。<br>同理，再从左往右，按照左低右高的顺序找出每一个位置左边有几个从低到高的数，记作 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex;" xmlns="http://www.w3.org/2000/svg" width="3.093ex" height="2.245ex" role="img" focusable="false" viewBox="0 -705 1367.1 992.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path></g><g data-mml-node="TeXAtom" transform="translate(523,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></g></svg></mjx-container>。</p>
+<p>最后两边合并，注意合并时要减 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container>。</p>
+<p>Code:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 101</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> f1[MAXN],f2[MAXN],h[MAXN],ans[MAXN];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,h+i);<br>        f1[i]=f2[i]=<span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">1</span>;i--)<br>    {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;=n;j++)<br>        {<br>            <span class="hljs-keyword">if</span> (h[i]&gt;h[j]&amp;&amp;f1[i]&lt;=f1[j]+<span class="hljs-number">1</span>)<br>            {<br>                f1[i]=f1[j]+<span class="hljs-number">1</span>;<br>            }<br>        }<br>    }<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;i;j++)<br>        {<br>            <span class="hljs-keyword">if</span> (h[i]&gt;h[j]&amp;&amp;f2[i]&lt;=f2[j]+<span class="hljs-number">1</span>)<br>            {<br>                f2[i]=f2[j]+<span class="hljs-number">1</span>;<br>            }<br>        }<br>    }<br>    <span class="hljs-type">int</span> mx=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        ans[i]=f1[i]+f2[i]<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">if</span> (ans[i]&gt;mx)<br>        {<br>            mx=ans[i];<br>        }<br>    }<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,n-mx);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/03/gwVEhv4kQSKJsHa.webp"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2022/11/26/noip2022/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">NOIP2022 游记</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/04/sQ1W5gtxZPa8AGd.webp"></div>
+      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/19/gav1bPiyF8uWR34.webp"></div>
     
     <div class="card-text">
       
-        <a href="/2022/11/25/P1407/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">P1407 [国家集训队]稳定婚姻 题解</h2>
+        <a href="/2023/01/19/P5523/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">P5523 [yLOI2019]珍珠 题解</h2>
         </a>
       
       <div class="card-text--row">Older</div>
