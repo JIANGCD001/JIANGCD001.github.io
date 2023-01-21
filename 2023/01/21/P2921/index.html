@@ -25,7 +25,7 @@
 
   
 
-  <title>OI 模板 | JIANCGD001 的 blog</title>
+  <title>P2921 [USACO08DEC]Trick or Treat on the Farm G 题解 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/03/gWZcAqYn7TkNUej.webp)"></div>
+    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/19/JuVxBaiLlKXzeSw.webp)"></div>
   
 
   <!-- navbar -->
@@ -211,11 +211,11 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">OI 模板</h1>
+          <h1 class="title-wrap">P2921 [USACO08DEC]Trick or Treat on the Farm G 题解</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-08-12T08:55:43.000Z" itemprop="datePublished">2022-08-12</time>
+            <time  class="article-date" datetime="2023-01-21T07:59:00.000Z" itemprop="datePublished">2023-01-21</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -223,6 +223,14 @@ mjx-container[display="true"] + br {
           <ul class="wrap-list dark">
   
     <li><a href="/tags/Topic-OI/">🏷️ Topic-OI</a></li>
+  
+    <li><a href="/tags/Type-Solutions/">🏷️ Type-Solutions</a></li>
+  
+    <li><a href="/tags/Algorithm-Memorial-Searching/">🏷️ Algorithm-Memorial Searching</a></li>
+  
+    <li><a href="/tags/Algorithm-Dynamic-Programming/">🏷️ Algorithm-Dynamic Programming</a></li>
+  
+    <li><a href="/tags/Algorithm-Search/">🏷️ Algorithm-Search</a></li>
   
 </ul>
         </div>
@@ -246,40 +254,25 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="最大公因数"><a href="#最大公因数" class="headerlink" title="最大公因数"></a>最大公因数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">return</span> b==<span class="hljs-number">0</span>?a:<span class="hljs-built_in">gcd</span>(b,a%b);<br>}<br></code></pre></td></tr></table></figure>
-<h3 id="倍增快速幂"><a href="#倍增快速幂" class="headerlink" title="倍增快速幂"></a>倍增快速幂</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> MOD=<span class="hljs-number">998244353</span><br><span class="hljs-type">int</span> <span class="hljs-built_in">quickpower</span>(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)<br>{<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> ans=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (b&gt;<span class="hljs-number">0</span>)<br>    {<br>        <span class="hljs-keyword">if</span> (b%<span class="hljs-number">2</span>==<span class="hljs-number">1</span>)<br>        {<br>            ans=ans*b%MOD;<br>        }<br>        a=a*a%k;<br>        b=b&gt;&gt;<span class="hljs-number">1</span>;<br>    }<br>}<br></code></pre></td></tr></table></figure>
+        <p>利用类似于在拓朴排序时所使用的染色标记法，我们也给每个走过的点打上标记，因为这道题的本质是数出以 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 为起点的环的长度。<br>有一个非常重要的优化就是如果已经知道了 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 点到 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></svg></mjx-container> 点是可通的，那么如果在一次遍历到 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 点时，就可以判断 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 到 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></svg></mjx-container> 之间有没有经过起点，有，就计算并且输出，没有就直接跳到 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></svg></mjx-container> 继续遍历。</p>
+<p>Code:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 100005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> nxt[MAXN];<br><span class="hljs-type">int</span> col[MAXN],dfn[MAXN],sdfn[MAXN],mc[MAXN];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-built_in">memset</span>(col,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(col));<br>    <span class="hljs-built_in">memset</span>(dfn,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(dfn));<br>    <span class="hljs-built_in">memset</span>(mc,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(mc));<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,nxt+i);<br>    }<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=i,cnt=<span class="hljs-number">0</span>;;j=nxt[j],cnt++)<br>        {<br>            <span class="hljs-keyword">if</span> (!col[j])<br>            {<br>                col[j]=i;<br>                dfn[j]=cnt;<br>            }<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (col[j]==i)<br>            {<br>                mc[i]=cnt-dfn[j];<br>                sdfn[i]=dfn[j];<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,cnt);<br>                <span class="hljs-keyword">break</span>;<br>            }<br>            <span class="hljs-keyword">else</span><br>            {<br>                mc[i]=mc[col[j]];<br>                sdfn[i]=cnt+<span class="hljs-built_in">max</span>(sdfn[col[j]]-dfn[j],<span class="hljs-number">0</span>);<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,sdfn[i]+mc[i]);<br>                <span class="hljs-keyword">break</span>;<br>            }<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/03/XFBuiS4LY1fWVP5.webp"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2022/08/16/math_matrix/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">矩阵初步应用</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/12/30/aQUHWvM7PIzsBAx.webp"></div>
+      <div class="card-cover" background-image-lazy data-img="ohttps://s2.loli.net/2023/01/19/UsApIPQo6xLz2hR.webp"></div>
     
     <div class="card-text">
       
-        <a href="/2022/08/10/math_classnote2/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">张好风的数学课讲义 2</h2>
+        <a href="/2023/01/21/P2822/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">P2822 [NOIP2016 提高组] 组合数问题 题解</h2>
         </a>
       
       <div class="card-text--row">Older</div>
