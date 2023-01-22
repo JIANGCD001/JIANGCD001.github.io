@@ -25,7 +25,7 @@
 
   
 
-  <title>心里住着的那个女孩 | JIANCGD001 的 blog</title>
+  <title>P2447 [SDOI2010] 外星千足虫 题解 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/04/juMpw6KnXHYWUNa.webp)"></div>
+    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/19/ryV6FRUApZCdbcT.webp)"></div>
   
 
   <!-- navbar -->
@@ -211,20 +211,26 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">心里住着的那个女孩</h1>
+          <h1 class="title-wrap">P2447 [SDOI2010] 外星千足虫 题解</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2023-01-04T12:52:24.000Z" itemprop="datePublished">2023-01-04</time>
+            <time  class="article-date" datetime="2023-01-22T02:28:54.000Z" itemprop="datePublished">2023-01-22</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/Type-Diary/">🏷️ Type-Diary</a></li>
+    <li><a href="/tags/Topic-OI/">🏷️ Topic-OI</a></li>
   
-    <li><a href="/tags/Topic-Life/">🏷️ Topic-Life</a></li>
+    <li><a href="/tags/Type-Solutions/">🏷️ Type-Solutions</a></li>
+  
+    <li><a href="/tags/Algorithm-Possibility/">🏷️ Algorithm-Possibility</a></li>
+  
+    <li><a href="/tags/Algorithm-Bit/">🏷️ Algorithm-Bit</a></li>
+  
+    <li><a href="/tags/Algorithm-Gauss/">🏷️ Algorithm-Gauss</a></li>
   
 </ul>
         </div>
@@ -248,39 +254,26 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        
+        <p>高斯消元解异或方程组。</p>
+<p>判断无解用的条件就是：<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 个未知数必须要 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 条<strong>本质不同</strong>的方程才可以解出。</p>
+<p>Code:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXM 2005</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 1005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,m;<br><span class="hljs-type">int</span> wrm[MAXM][MAXN];<br><span class="hljs-type">char</span> ch[MAXM];<br><span class="hljs-type">bool</span> vis[MAXM];<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<br>    <span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (ch&lt;<span class="hljs-string">'0'</span>||ch&gt;<span class="hljs-string">'9'</span>)<br>    {<br>        <span class="hljs-keyword">if</span> (ch==<span class="hljs-string">'-'</span>)<br>        {<br>            f=<span class="hljs-number">-1</span>;<br>        }<br>        ch=<span class="hljs-built_in">getchar</span>();<br>    }<br>    <span class="hljs-keyword">while</span> (ch&gt;=<span class="hljs-string">'0'</span>&amp;&amp;ch&lt;=<span class="hljs-string">'9'</span>)<br>    {<br>        x=x*<span class="hljs-number">10</span>+(ch-<span class="hljs-string">'0'</span>);<br>        ch=<span class="hljs-built_in">getchar</span>();<br>    }<br>    <span class="hljs-keyword">return</span> x*f;<br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gauss</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> ret=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-type">int</span> tmp=i;<br>        <span class="hljs-keyword">while</span> (!wrm[tmp][i]&amp;&amp;tmp&lt;=n)<br>        {<br>            tmp++;<br>        }<br>        <span class="hljs-keyword">if</span> (tmp==n+<span class="hljs-number">1</span>)<br>        {<br>            ret++;<br>            <span class="hljs-keyword">continue</span>;<br>        }<br>        vis[i]=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span> (i!=tmp)<br>        {<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=i;j&lt;=n+<span class="hljs-number">1</span>;j++)<br>            {<br>                <span class="hljs-built_in">swap</span>(wrm[tmp][j],wrm[i][j]);<br>            }<br>        }<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>        {<br>            <span class="hljs-keyword">if</span> (!vis[j]&amp;&amp;wrm[j][i])<br>            {<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k=i;k&lt;=n+<span class="hljs-number">1</span>;k++)<br>                {<br>                    wrm[j][k]^=wrm[i][k];<br>                }<br>            }<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> ret;<br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    n=<span class="hljs-built_in">read</span>();<br>    m=<span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)<br>    {<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch+<span class="hljs-number">1</span>);<br>        wrm[i][n+<span class="hljs-number">1</span>]=<span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>        {<br>            wrm[i][j]=ch[j]-<span class="hljs-string">'0'</span>;<br>        }<br>    }<br>    <span class="hljs-type">int</span> cur=n;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">gauss</span>())<br>    {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        {<br>            <span class="hljs-keyword">if</span> (!vis[i])<br>            {<br>                cur++;<br>                <span class="hljs-keyword">if</span> (cur&gt;m)<br>                {<br>                    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Cannot Determine\n"</span>);<br>                    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>                }<br>                <span class="hljs-built_in">swap</span>(wrm[cur],wrm[i]);<br>            }<br>        }<br>    }<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=n;i&gt;=<span class="hljs-number">1</span>;i--)<br>    {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">1</span>;j--)<br>        {<br>            <span class="hljs-keyword">if</span> (wrm[j][i])<br>            {<br>                wrm[j][n+<span class="hljs-number">1</span>]^=wrm[i][n+<span class="hljs-number">1</span>];<br>            }<br>        }<br>    }<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,cur);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    {<br>        <span class="hljs-keyword">if</span> (wrm[i][n+<span class="hljs-number">1</span>])<br>        {<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"?y7M#\n"</span>);<br>        }<br>        <span class="hljs-keyword">else</span><br>        {<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Earth\n"</span>);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/05/9mDvQnb2aPduqF8.webp"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2023/01/05/P3722/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">P3722 [AHOI2017/HNOI2017]影魔 题解</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/03/gwVEhv4kQSKJsHa.webp"></div>
+      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/19/5kLb1THPnlFIfWg.webp"></div>
     
     <div class="card-text">
       
-        <a href="/2022/11/26/noip2022/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">NOIP2022 游记</h2>
+        <a href="/2023/01/22/CF1777A/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">CF1777A Everybody Likes Good Arrays! 题解</h2>
         </a>
       
       <div class="card-text--row">Older</div>
