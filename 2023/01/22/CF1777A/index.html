@@ -25,7 +25,7 @@
 
   
 
-  <title>P7960 [NOIP2021]报数 题解 | JIANCGD001 的 blog</title>
+  <title>CF1777A Everybody Likes Good Arrays! 题解 | JIANCGD001 的 blog</title>
 
   
 
@@ -160,7 +160,7 @@ mjx-container[display="true"] + br {
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/04/OhMzDIG1kiLy7eU.webp)"></div>
+    <div class="post-image" style="background-image: url(https://s2.loli.net/2023/01/19/5kLb1THPnlFIfWg.webp)"></div>
   
 
   <!-- navbar -->
@@ -211,11 +211,11 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">P7960 [NOIP2021]报数 题解</h1>
+          <h1 class="title-wrap">CF1777A Everybody Likes Good Arrays! 题解</h1>
           <h2 class="title-sub-wrap">
             <strong>JIANGCD001</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-11-19T10:46:35.000Z" itemprop="datePublished">2022-11-19</time>
+            <time  class="article-date" datetime="2023-01-22T02:17:39.000Z" itemprop="datePublished">2023-01-22</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -225,6 +225,10 @@ mjx-container[display="true"] + br {
     <li><a href="/tags/Topic-OI/">🏷️ Topic-OI</a></li>
   
     <li><a href="/tags/Type-Solutions/">🏷️ Type-Solutions</a></li>
+  
+    <li><a href="/tags/Algorithm-Greedy/">🏷️ Algorithm-Greedy</a></li>
+  
+    <li><a href="/tags/Algorihtm-Math/">🏷️ Algorihtm-Math</a></li>
   
 </ul>
         </div>
@@ -248,42 +252,26 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>黄黄的 NOIP 题不多了啊！</p>
-<p>显然是一道用筛法的题目（否则在线查询也太慢了吧）。<br>预处理直接筛，并开个数组记录每一个数下一个所能报的数是多少。<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container> 查询即可。  </p>
+        <p><del>本文算法纯属瞎搞</del></p>
+<p>可以观察到若两个数奇偶性不同，则其前缀和的奇偶性均会按照一定的顺序排列，利用这个性质，我们做前缀和，并判断奇偶性。修改利用滚存。</p>
 <p>Code:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 10000005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nxt[MAXN]={<span class="hljs-number">0</span>};<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">while</span> (x)<br>    {<br>        <span class="hljs-type">int</span> a=x%<span class="hljs-number">10</span>;<br>        <span class="hljs-keyword">if</span> (a==<span class="hljs-number">7</span>)<br>        {<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        }<br>        x/=<span class="hljs-number">10</span>;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>}<br><span class="hljs-type">int</span> last;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=MAXN;i++)<br>    {<br>        <span class="hljs-keyword">if</span> (nxt[i]==<span class="hljs-number">-1</span>)<br>        {<br>            <span class="hljs-keyword">continue</span>;<br>        }<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">check</span>(i))<br>        {<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;i*j&lt;=MAXN;j++)<br>            {<br>                nxt[i*j]=<span class="hljs-number">-1</span>;<br>            }<br>            <span class="hljs-keyword">continue</span>;<br>        }<br>        nxt[last]=i;<br>        last=i;<br>    }<br>}<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> T;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;T);<br>    <span class="hljs-built_in">init</span>();<br>    <span class="hljs-keyword">while</span> (T--)<br>    {<br>        <span class="hljs-type">int</span> x;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;x);<br>        <span class="hljs-keyword">if</span> (nxt[x]==<span class="hljs-number">-1</span>)<br>        {<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-1\n"</span>);<br>        }<br>        <span class="hljs-keyword">else</span><br>        {<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,nxt[x]);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXN 2</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> per[<span class="hljs-number">4</span>]={<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>};<br><span class="hljs-type">int</span> his[MAXN];<br><span class="hljs-type">int</span> ch;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-type">int</span> T;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;T);<br>    <span class="hljs-keyword">while</span> (T--)<br>    {<br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);<br>        <span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>,cnt=<span class="hljs-number">0</span>;<br>        his[<span class="hljs-number">0</span>]=his[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        {<br>            <span class="hljs-type">int</span> a;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a);<br>            sum+=a;<br>            his[<span class="hljs-number">0</span>]=his[<span class="hljs-number">1</span>];<br>            his[<span class="hljs-number">1</span>]=a;<br>            <span class="hljs-comment">//cout&lt;&lt;his[0]&lt;&lt;" "&lt;&lt;his[1]&lt;&lt;endl;</span><br>            <span class="hljs-keyword">if</span> (i!=<span class="hljs-number">1</span>)<br>            {<br>                <span class="hljs-keyword">if</span> (per[(ch+i<span class="hljs-number">-1</span>)%<span class="hljs-number">4</span>]!=(sum&amp;<span class="hljs-number">1</span>))<br>                {<br>                    cnt++;<br>                    sum=sum-his[<span class="hljs-number">0</span>]-his[<span class="hljs-number">1</span>]+his[<span class="hljs-number">0</span>]*his[<span class="hljs-number">1</span>];<br>                    ch-=<span class="hljs-number">1</span>;<br>                }<br>            }<br>            <span class="hljs-keyword">else</span><br>            {<br>                <span class="hljs-keyword">if</span> (sum&amp;<span class="hljs-number">1</span>)<br>                {<br>                    ch=<span class="hljs-number">2</span>;<br>                }<br>                <span class="hljs-keyword">else</span><br>                {<br>                    ch=<span class="hljs-number">1</span>;<br>                }<br>            }<br>        }<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,cnt);<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/04/rpowZNPbmtcY2yR.webp"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2022/11/19/P6154/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">P6154 游走 题解</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/04/dO2QMsUDqzTNrHX.webp"></div>
+      <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/19/uR72V6SwAsyjBG4.webp"></div>
     
     <div class="card-text">
       
-        <a href="/2022/11/19/P2048/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">P2048 [NOI2010]超级钢琴 题解</h2>
+        <a href="/2023/01/21/P3850/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">P3850 [TJOI2007] 书架 题解</h2>
         </a>
       
       <div class="card-text--row">Older</div>
